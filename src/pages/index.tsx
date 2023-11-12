@@ -1,6 +1,6 @@
 import PostCard from "@/components/post-card";
 import IPostMetadata from "@/types/i-post";
-import { getPostsFromDataDirectory } from "@/utils/server/utils";
+import { getPostsFromDataDirectory, sortByDate } from "@/utils/server/utils";
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 
@@ -10,8 +10,8 @@ interface IProps {
 
 export const getStaticProps: GetStaticProps = async () => {
   let props: IProps = { posts: [] };
-
-  props.posts = await getPostsFromDataDirectory();
+  const posts = await getPostsFromDataDirectory()
+  props.posts = posts.sort(sortByDate);
 
   return {
     props, // will be passed to the page component as props

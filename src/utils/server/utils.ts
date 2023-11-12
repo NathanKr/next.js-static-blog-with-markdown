@@ -3,6 +3,7 @@ import IPostMetadata from "@/types/i-post";
 import fs from "fs/promises";
 import matter from "gray-matter";
 import path from "path";
+import dayjs from 'dayjs'
 
 export async function getPostsFromDataDirectory(): Promise<IPostMetadata[]> {
   const dir = path.join("data", "posts");
@@ -29,3 +30,21 @@ export async function getPostFromDataDirectory(
 
   return posts.find((p) => p.slug == slug);
 }
+
+/**
+ *
+ * @param post1
+ * @param post2
+ * @param dateFormat e.g 'March 5, 2021'
+ * @returns
+ */
+export const sortByDate = (
+  post1: IPost,
+  post2: IPost,
+  dateFormat: string = "MMMM D, YYYY"
+): number => {
+  const date1 = dayjs(post1.frontmatter.date, { format: dateFormat });
+  const date2 = dayjs(post2.frontmatter.date, { format: dateFormat });
+
+  return date2.diff(date1);
+};
