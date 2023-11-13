@@ -1,10 +1,9 @@
 <h2>Motivation</h2>
-Posts are static can use static system file like markdown so no need to use database and pay for it.
+Posts are static can use static system file like markdown so no need to use database and pay for it !!!
 
-<h2>Open issues</h2>
+<h2>Points of interest</h2>
 <ul>
-<li>do i need test.md</li> 
-<li>any plugin to create the .md file </li> 
+<li>in most md file in data\posts the <a href='https://www.markdownguide.org/basic-syntax/'>markdown format</a> but i am using HTML in test-nath.md and it is working nicely including styling and img !!!</li> 
 </ul>
 
 <h2>Reference</h2>
