@@ -1,5 +1,5 @@
 <h2>Motivation</h2>
-Posts are static can use static system file like markdown so no need to use database and pay for it !!!
+Posts are static , so we can use local files like markdown and no need to use database and pay for it !!!
 
 <h2>Design</h2>
 <ul>
