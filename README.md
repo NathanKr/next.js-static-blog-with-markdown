@@ -3,7 +3,7 @@ Posts are static can use static system file like markdown so no need to use data
 
 <h2>Points of interest</h2>
 <ul>
-<li>in most md file in data\posts the <a href='https://www.markdownguide.org/basic-syntax/'>markdown format</a> but i am using HTML in test-nath.md and it is working nicely including styling and img !!!</li> 
+<li>in most md file in data\posts the <a href='https://www.markdownguide.org/basic-syntax/'>markdown format</a> is used. But i am using HTML in test-nath.md and it is working VERY nicely including styling and img !!!</li> 
 </ul>
 
 <h2>Reference</h2>
