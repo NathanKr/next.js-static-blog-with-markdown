@@ -16,5 +16,19 @@ Posts are static , so we can use local files like markdown and no need to use da
 <li>in most md file in data\posts the <a href='https://www.markdownguide.org/basic-syntax/'>markdown format</a> is used. But i am using HTML in test-nath.md and it is working VERY nicely including styling and img !!!</li> 
 </ul>
 
+
+<h2>Open issues</h2>
+<ul>
+<li>npm run build locally is failing or get stuck. However, on vercel it is passing</li>
+<li>PostMetadataFrontmatter has title , date , excerpt , cover_image but i have to remark it because other i get build error in "posts.push({ slug, frontmatter: data, content });"</li>
+</ul>
+
+<h2>Missing features</h2>
+These features are important when you have more than 5-10 posts
+<ul>
+<li>categories : </li>
+<li>search</li>
+<ul>
+
 <h2>Reference</h2>
 video <a href='https://youtu.be/MrjeefD8sac?si=y-b_CCplDTAXYGqw'> Static Blog With Next.js and Markdown  , Traversy , June 2021</a> and matching <a href='https://github.com/bradtraversy/next-markdown-blog'>repo</a>
