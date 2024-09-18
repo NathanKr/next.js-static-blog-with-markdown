@@ -81,13 +81,12 @@ export const highlightCodeInHTMLString = (htmlString: string): string => {
 <li>In most .md files under /data/posts, the <a href='https://www.markdownguide.org/basic-syntax/'>markdown format</a> is used. However, HTML can also be used, as seen in test-nath.md. This is convenient because you don't need to rely solely on Markdown syntax</li> 
 <li>When creating a README.md in GitHub, you typically use the following format for code blocks:
 
-```
-
+<pre><code>
 ```typescript
 // code here
 ```
+</pre></code>
 
-```
 
 With prismjs, however, the required format is slightly different:
 
