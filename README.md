@@ -1,18 +1,18 @@
 <h2>Motivation</h2>
-Posts are static , so we can use local files like markdown and no need to use database and pay for it !!!
+Posts are static, so we can use local markdown files without needing a database, saving costs. But how do you create an HTML file from an .md file? That's the focus of this repo.
 
 <h2>Design</h2>
 <ul>
-<li>next.js is used for routing and posts ssg using getStaticProps and getStaticPaths</li>
-<li>the .md files under /data/posts are post files written in traditional markdown (e.g. django-crash-course.md) but i also use html elements (e.g. in test-nath.md) </li>
-<li>The .md file hold post metadata :title, date , excerpt , cover_image and the post content</li>
-<li>parsing the .md file and extracting its content and metadata  is done via the function matter from <a href='https://www.npmjs.com/package/gray-matter'>gray-matter</a></li>
-<li>The function parse from <a href='https://www.npmjs.com/package/marked'>marked</a> is used to translate the .md file content to html and set in react via dangerouslySetInnerHTML</li>
-<li><a href='https://www.npmjs.com/package/prismjs'>prismjs</a> is used for content code highlighting with the help of <a href='https://www.npmjs.com/package/jsdom'>jsdom</a> and style file post.module.css</li>
+<li>Next.js is used for routing and generating static site pages (SSG) using getStaticProps and getStaticPaths</li>
+<li>he .md files under /data/posts are traditional markdown files (e.g., django-crash-course.md), but some also include HTML elements (e.g., test-nath.md)</li>
+<li>Each .md file contains post metadata: title, date, excerpt, cover_image, and the post content</li>
+<li>Parsing the .md file and extracting its content and metadata is done using the matter function from <a href='https://www.npmjs.com/package/gray-matter'>gray-matter</a></li>
+<li>The content of the .md file is converted to HTML using the parse function from <a href='https://www.npmjs.com/package/marked'>marked</a> and it is rendered in React using dangerouslySetInnerHTML</li>
+<li><a href='https://www.npmjs.com/package/prismjs'>prismjs</a> is used for syntax highlighting in code blocks, with the help of <a href='https://www.npmjs.com/package/jsdom'>jsdom</a> and styles from from post.module.css</li>
 </ul>
 
 <h2>Code - server</h2>
-The following is done in this repo on the server. Actually i see no reason of doing this on the client
+The following logic is handled server-side, as there's no need to process it on the client.
 
 ```typescript
 // Load all languages.
@@ -26,7 +26,7 @@ if (post) {
 ```
 
 <h2>Code - client</h2>
-This is done on the client
+The processed HTML is rendered on the client side like this:
 
 ```typescript
 <div
@@ -66,22 +66,28 @@ export const highlightCodeInHTMLString = (htmlString: string): string => {
 
 <h2>Points of interest</h2>
 <ul>
-<li>in most md file in data\posts the <a href='https://www.markdownguide.org/basic-syntax/'>markdown format</a> is used. But i am using HTML in test-nath.md and it is working VERY nicely including styling and img !!! - this is also very convienient because you dont have to learn the markdown synatx</li> 
-<li>When you create README.md in github and need code highlighted e.g. for typescript you use ```typescript before the code start and ``` when the code ends. Here prismjs require you to do it differently : before the code start
+<li>In most .md files under /data/posts, the <a href='https://www.markdownguide.org/basic-syntax/'>markdown format</a> is used. However, HTML can also be used, as seen in test-nath.md. This is convenient because you don't need to rely solely on Markdown syntax</li> 
+<li>When creating a README.md in GitHub, you typically use the following format for code blocks:
+
+```
+
+```typescript
+// code here
+```
+
+```
+
+With prismjs, however, the required format is slightly different:
 
 ```
 <pre>
-<code class='language-typescript'>
-```
-
-after the code end
-
-```
+<code class="language-typescript">
+// code here
 </code>
 </pre>
 ```
 
-check in test-nath.md
+See test-nath.md for an example.
 
 </li> 
 </ul>
@@ -89,7 +95,8 @@ check in test-nath.md
 <h2>Blog missing features</h2>
 These features are important when you have more than 5-10 posts
 <ul>
-<li>categories : </li>
-<li>search</li>
+<li>Categories: To organize posts and help users find related content</li>
+<li>Search: To allow users to quickly find posts by keywords</li>
 </ul>
-I have not handle it here because this repo concentrate on handling the .md files. Blog is just good use case
+
+These features are not implemented in this repo, as the focus is on handling .md files, but they are essential for a full-featured blog.
