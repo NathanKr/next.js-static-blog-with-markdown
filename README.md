@@ -49,7 +49,7 @@ The processed HTML is rendered on the client side like this:
 
 <h2>Code - highlightCodeInHTMLString</h2>
 
-````typescript
+```typescript
 //  * Function to highlight code blocks within an HTML string
 //  * @param htmlString : html element with pre , code and language code class e.g.
 //   <pre><code class="language-php">
@@ -73,7 +73,7 @@ export const highlightCodeInHTMLString = (htmlString: string): string => {
 
   return dom.serialize();
 };
-````
+```
 
 <h2>Points of interest</h2>
 <ul>
