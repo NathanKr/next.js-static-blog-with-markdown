@@ -11,6 +11,59 @@ Posts are static , so we can use local files like markdown and no need to use da
 <li><a href='https://www.npmjs.com/package/prismjs'>prismjs</a> is used for content code highlighting with the help of <a href='https://www.npmjs.com/package/jsdom'>jsdom</a> and style file post.module.css</li>
 </ul>
 
+<h2>Code - server</h2>
+The following is done in this repo on the server. Actually i see no reason of doing this on the client
+
+```typescript
+// Load all languages.
+loadLanguages();
+const post = await getPostFromDataDirectory(slug);
+
+if (post) {
+  post.content = highlightCodeInHTMLString(post.content);
+  post.content = marked.parse(post.content);
+}
+```
+
+<h2>Code - client</h2>
+This is done on the client
+
+```typescript
+<div
+  className={styles.post_body}
+  dangerouslySetInnerHTML={{ __html: post.content }}
+></div>
+```
+
+<h2>Code - highlightCodeInHTMLString</h2>
+
+```typescript
+/**
+ * Function to highlight code blocks within an HTML string
+ * @param htmlString : html element with pre , code and language code class e.g.
+  <pre><code class="language-php">
+    $greeting = 'Hello, world!';
+    echo $greeting;
+  </code></pre> 
+ * @returns highlighted code
+ */
+export const highlightCodeInHTMLString = (htmlString: string): string => {
+  const dom = new JSDOM(htmlString);
+  const codeBlocks = dom.window.document.querySelectorAll(
+    "pre code"
+  ) as NodeListOf<HTMLElement>;
+
+  codeBlocks.forEach((codeBlock: HTMLElement) => {
+    const language = codeBlock.className.replace("language-", "");
+    const code = codeBlock.textContent!.trim();
+    const highlightedCode = highlight(code, languages[language], language);
+    codeBlock.innerHTML = highlightedCode;
+  });
+
+  return dom.serialize();
+};
+```
+
 <h2>Points of interest</h2>
 <ul>
 <li>in most md file in data\posts the <a href='https://www.markdownguide.org/basic-syntax/'>markdown format</a> is used. But i am using HTML in test-nath.md and it is working VERY nicely including styling and img !!! - this is also very convienient because you dont have to learn the markdown synatx</li> 
@@ -22,20 +75,21 @@ Posts are static , so we can use local files like markdown and no need to use da
 ```
 
 after the code end
+
 ```
 </code>
 </pre>
 ```
 
 check in test-nath.md
+
 </li> 
 </ul>
-
 
 <h2>Blog missing features</h2>
 These features are important when you have more than 5-10 posts
 <ul>
 <li>categories : </li>
 <li>search</li>
-<ul>
+</ul>
 I have not handle it here because this repo concentrate on handling the .md files. Blog is just good use case

@@ -25,6 +25,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   if (post) {
     post.content = highlightCodeInHTMLString(post.content);
+    post.content = marked.parse(post.content)
   }
 
   let props: IProps = { post };
@@ -58,7 +59,7 @@ const Post: NextPage<IProps> = ({ post }) => {
       <PostHead post={post} />
       <div
         className={styles.post_body}
-        dangerouslySetInnerHTML={{ __html: marked.parse(post.content) }}
+        dangerouslySetInnerHTML={{ __html: post.content }}
       ></div>
     </div>
   ) : (
