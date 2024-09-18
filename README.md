@@ -6,8 +6,9 @@ Posts are static , so we can use local files like markdown and no need to use da
 <li>next.js is used for routing and posts ssg using getStaticProps and getStaticPaths</li>
 <li>the .md files under /data/posts are post files written in markdown and html format(test-nath.md)</li>
 <li>The .md file hold post metadata :title, date , excerpt , cover_image and the post content</li>
-<li>parsing the .md file is done using gray-matter</li>
-<li>marked.parse is used to translate the md content to html and set in react via dangerouslySetInnerHTML</li>
+<li>parsing the .md file and extracting its content and metadata (title,date,excerpt,cover_image) is done via the function matter from <a href='https://www.npmjs.com/package/gray-matter'>gray-matter</a></li>
+<li>The function parse from <a href='https://www.npmjs.com/package/marked'>marked</a> is used to translate the .md file content to html and set in react via dangerouslySetInnerHTML</li>
+<li><a href='https://www.npmjs.com/package/prismjs'>prismjs</a>is used for content code highlighting</li>
 </ul>
 
 
@@ -17,18 +18,14 @@ Posts are static , so we can use local files like markdown and no need to use da
 </ul>
 
 
-<h2>Open issues</h2>
-<ul>
-<li>npm run build locally is failing or get stuck. However, on vercel it is passing</li>
-<li>PostMetadataFrontmatter has title , date , excerpt , cover_image but i have to remark it because other i get build error in "posts.push({ slug, frontmatter: data, content });"</li>
-</ul>
+<h2>Reference</h2>
+video <a href='https://youtu.be/MrjeefD8sac?si=y-b_CCplDTAXYGqw'> Static Blog With Next.js and Markdown  , Traversy , June 2021</a> and matching <a href='https://github.com/bradtraversy/next-markdown-blog'>repo</a>
 
-<h2>Missing features</h2>
+
+<h2>Blog missing features</h2>
 These features are important when you have more than 5-10 posts
 <ul>
 <li>categories : </li>
 <li>search</li>
 <ul>
-
-<h2>Reference</h2>
-video <a href='https://youtu.be/MrjeefD8sac?si=y-b_CCplDTAXYGqw'> Static Blog With Next.js and Markdown  , Traversy , June 2021</a> and matching <a href='https://github.com/bradtraversy/next-markdown-blog'>repo</a>
+I have not handle it here because this repo concentrate on handling the .md files. Blog is just good use case 

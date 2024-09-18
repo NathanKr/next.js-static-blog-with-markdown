@@ -7,6 +7,10 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { marked } from "marked";
 import PostHead from "@/components/post-head";
+import loadLanguages from "prismjs/components/index";
+import "prismjs/themes/prism-tomorrow.css";
+import { highlightCodeInHTMLString } from "@/utils/server/prism-utils";
+import styles from "@/styles/post.module.css";
 
 interface IProps {
   post: IPost | undefined;
@@ -15,7 +19,13 @@ interface IProps {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params as any; // -- zero based
 
+  // Load all languages.
+  loadLanguages();
   const post = await getPostFromDataDirectory(slug);
+
+  if (post) {
+    post.content = highlightCodeInHTMLString(post.content);
+  }
 
   let props: IProps = { post };
 
@@ -44,12 +54,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const Post: NextPage<IProps> = ({ post }) => {
   let elemMain = <p>{post?.slug}</p>;
   elemMain = post ? (
-    <>
+    <div className={styles.container}>
       <PostHead post={post} />
       <div
+        className={styles.post_body}
         dangerouslySetInnerHTML={{ __html: marked.parse(post.content) }}
       ></div>
-    </>
+    </div>
   ) : (
     <p>post does not exist</p>
   );
@@ -59,7 +70,7 @@ const Post: NextPage<IProps> = ({ post }) => {
       <Head>
         <title>Static Markdown Post</title>
       </Head>
-      <main>{elemMain}</main>
+      <main >{elemMain}</main>
     </>
   );
 };

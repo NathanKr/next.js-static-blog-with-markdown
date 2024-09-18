@@ -97,6 +97,8 @@ header a {
   padding: 3px 10px;
 }
 
+/* 
+ not used
 .post-body ul,
 ol {
   font-size: 110%;
@@ -110,7 +112,7 @@ ol {
   padding: 20px;
   margin: 20px 0;
   line-height: 2.3;
-}
+} */
 
 @media (max-width: 500px) {
   .posts {

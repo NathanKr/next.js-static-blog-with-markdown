@@ -28,3 +28,30 @@ List using ul \ li tags
 
 <p>html img element using internal url</p>
 <img src='/images/posts/img1.jpg'/>
+
+<p>highlighted typescript code</p>
+<pre>
+<code class='language-typescript'>
+  export function sample1() {
+    const posts = [
+      {
+        name: "Why Should You Use Core Web Vitals in Your WebSite",
+        category: "performance",
+      },
+      { name: "Object.groupBy", category: "javascript" },
+      {
+        name: "How to Automate Page Speed Insight Score",
+        category: "performance",
+      },
+    ];
+    /*
+    --- group by category : javascript , performance
+    --- groups keys are categories and value are the original object
+    */
+    const groups = Object.groupBy(posts, ({ category }) => category);
+    console.log(groups);
+    console.log(Object.keys(groups));
+    console.log(Object.values(groups));
+  }
+</code>
+</pre>
