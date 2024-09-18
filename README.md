@@ -26,7 +26,7 @@ npm run dev
 <h2>Code - server</h2>
 The following logic is handled server-side, as there's no need to process it on the client.
 
-<pre><code class="language-typescript">
+```typescript
 // Load all languages.
 loadLanguages();
 const post = await getPostFromDataDirectory(slug);
@@ -35,30 +35,29 @@ if (post) {
   post.content = highlightCodeInHTMLString(post.content);
   post.content = marked.parse(post.content);
 }
-</code></pre> 
+```
 
 <h2>Code - client</h2>
 The processed HTML is rendered on the client side like this:
 
-<pre><code class="language-typescript">
+```tsx
 <div
   className={styles.post_body}
   dangerouslySetInnerHTML={{ __html: post.content }}
 ></div>
-</code></pre> 
+```
 
 <h2>Code - highlightCodeInHTMLString</h2>
 
-<pre><code class="language-typescript">
-/**
- * Function to highlight code blocks within an HTML string
- * @param htmlString : html element with pre , code and language code class e.g.
-  <pre><code class="language-php">
-    $greeting = 'Hello, world!';
-    echo $greeting;
-  </code></pre> 
- * @returns highlighted code
- */
+````typescript
+//  * Function to highlight code blocks within an HTML string
+//  * @param htmlString : html element with pre , code and language code class e.g.
+//   <pre><code class="language-php">
+//     $greeting = 'Hello, world!';
+//     echo $greeting;
+//   ```
+//  * @returns highlighted code
+
 export const highlightCodeInHTMLString = (htmlString: string): string => {
   const dom = new JSDOM(htmlString);
   const codeBlocks = dom.window.document.querySelectorAll(
@@ -74,29 +73,17 @@ export const highlightCodeInHTMLString = (htmlString: string): string => {
 
   return dom.serialize();
 };
-</code></pre> 
+````
 
 <h2>Points of interest</h2>
 <ul>
-<li>In most .md files under /data/posts, the <a href='https://www.markdownguide.org/basic-syntax/'>markdown format</a> is used. However, HTML can also be used, as seen in test-nath.md. This is convenient because you don't need to rely solely on Markdown syntax</li> 
-<li>When creating a README.md in GitHub, you typically use the following format for code blocks:
+<li>In most .md files under /data/posts, the <a href='https://www.markdownguide.org/basic-syntax/'>markdown format</a> is used. However, HTML can also be used, as seen in test-nath.md. This is convenient because you don't need to rely solely on Markdown syntax</li>
+<li><p>When creating a README.md in GitHub, you typically use the following format for code blocks</p>
 
-<pre><code>
-```typescript
-// code here
-```
-</pre></code>
-
+<img src="https://github.com/NathanKr/next.js-static-blog-with-markdown/blob/main/figs/github-readme.png?raw=true"/>
 
 With prismjs, however, the required format is slightly different:
-
-```
-<pre>
-<code class="language-typescript">
-// code here
-</code>
-</pre>
-```
+<img src="https://github.com/NathanKr/next.js-static-blog-with-markdown/blob/main/figs/prism.png?raw=true">
 
 See test-nath.md for an example.
 
