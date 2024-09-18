@@ -26,7 +26,8 @@ npm run dev
 <h2>Code - server</h2>
 The following logic is handled server-side, as there's no need to process it on the client.
 
-<pre><code>
+
+```typescript
 // Load all languages.
 loadLanguages();
 const post = await getPostFromDataDirectory(slug);
@@ -35,21 +36,21 @@ if (post) {
   post.content = highlightCodeInHTMLString(post.content);
   post.content = marked.parse(post.content);
 }
-</code></pre>
+```
 
 <h2>Code - client</h2>
 The processed HTML is rendered on the client side like this:
 
-<pre><code>
+```jsx
 <div
   className={styles.post_body}
   dangerouslySetInnerHTML={{ __html: post.content }}
 ></div>
-</code></pre>
+```
 
 <h2>Code - highlightCodeInHTMLString</h2>
 
-<pre><code>
+```typescript
 //  * Function to highlight code blocks within an HTML string
 //  * @param htmlString : html element with pre , code and language code class e.g.
 //   <pre><code class="language-php">
@@ -73,7 +74,8 @@ export const highlightCodeInHTMLString = (htmlString: string): string => {
 
   return dom.serialize();
 };
-</code></pre>
+```
+
 
 <h2>Points of interest</h2>
 <ul>
@@ -86,7 +88,6 @@ With prismjs, however, the required format is slightly different:
 <img src="https://github.com/NathanKr/next.js-static-blog-with-markdown/blob/main/figs/prism.png?raw=true">
 
 See test-nath.md for an example.
-
 </li> 
 </ul>
 
