@@ -69,6 +69,11 @@ export const highlightCodeInHTMLString = (htmlString: string): string => {
 </code>
 </pre>
 
+<h2>highlighted code - sample</h2>
+Enter the post test-nath and you will see nice example as follows
+
+<img src="https://github.com/NathanKr/next.js-static-blog-with-markdown/blob/main/figs/highlight-nath-test-sample.png?raw=true"/>
+
 <h2>Points of interest</h2>
 <ul>
 <li>In most .md files under /data/posts, the <a href='https://www.markdownguide.org/basic-syntax/'>markdown format</a> is used. However, HTML can also be used, as seen in test-nath.md. This is convenient because you don't need to rely solely on Markdown syntax</li>
