@@ -48,6 +48,7 @@ if (post) {
 <img src="https://github.com/NathanKr/next.js-static-blog-with-markdown/blob/main/figs/client.png?raw=true"/>
 
 <h2>Code - highlightCodeInHTMLString</h2>
+This is a function to highlight code blocks within an HTML string
 
 <pre>
 <code class='language-typescript'>
