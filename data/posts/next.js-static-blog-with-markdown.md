@@ -1,3 +1,10 @@
+---
+title: 'Static blog with markdown'
+date: 'Sep 19, 2024'
+excerpt: 'Posts are static, so we can use local markdown files without needing a database, saving costs. But how ?'
+cover_image: '/images/posts/img5.jpg'
+---
+
 <h2>Motivation</h2>
 Posts are static, so we can use local markdown files without needing a database, saving costs. But how do you create an HTML file from an .md file? That's the focus of this repo.
 
