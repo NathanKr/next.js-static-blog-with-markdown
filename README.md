@@ -45,12 +45,7 @@ if (post) {
 <h2>Code - client</h2>
 <p>The processed HTML is rendered on the client side like this:</p>
 
-```html
-<div
-  className={styles.post_body}
-  dangerouslySetInnerHTML={{ __html: post.content }}
-></div>
-```
+<img src="https://github.com/NathanKr/next.js-static-blog-with-markdown/blob/main/figs/client.png?raw=true"/>
 
 <h2>Code - highlightCodeInHTMLString</h2>
 
