@@ -4,18 +4,14 @@ Posts are static, so we can use local markdown files without needing a database,
 <h2>Installation</h2>
 
 
-```
-
+```bash
 npm install
-
 ```
 
 <h2>Usage</h2>
 
-```
-
+```bash
 npm run dev
-
 ```
 
 <h2>Design</h2>
