@@ -3,17 +3,20 @@ Posts are static, so we can use local markdown files without needing a database,
 
 <h2>Installation</h2>
 
-<pre><code class="language-bash">
+
+```
 
 npm install
-</code></pre>
+
+```
 
 <h2>Usage</h2>
 
-<pre><code class="language-bash">
+```
 
 npm run dev
-</code></pre>
+
+```
 
 <h2>Design</h2>
 <ul>
@@ -29,18 +32,17 @@ npm run dev
 <h2>Code - server</h2>
 The following logic is handled server-side, as there's no need to process it on the client.
 
-<pre>
-<code class='language-typescript'>
+
+```typescript
 // Load all languages.
 loadLanguages();
 const post = await getPostFromDataDirectory(slug);
 
 if (post) {
-  post.content = highlightCodeInHTMLString(post.content);
   post.content = marked.parse(post.content);
+  post.content = highlightCodeInHTMLString(post.content);
 }
-</code>
-</pre>
+```
 
 <h2>Code - client</h2>
 <p>The processed HTML is rendered on the client side like this:</p>
@@ -50,8 +52,7 @@ if (post) {
 <h2>Code - highlightCodeInHTMLString</h2>
 This is a function to highlight code blocks within an HTML string
 
-<pre>
-<code class='language-typescript'>
+```typescript
 export const highlightCodeInHTMLString = (htmlString: string): string => {
   const dom = new JSDOM(htmlString);
   const codeBlocks = dom.window.document.querySelectorAll(
@@ -67,8 +68,7 @@ export const highlightCodeInHTMLString = (htmlString: string): string => {
 
   return dom.serialize();
 };
-</code>
-</pre>
+```
 
 <h2>highlighted code - sample</h2>
 Enter the post test-nath and you will see nice example as follows
