@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const post = await getPostFromDataDirectory(slug);
 
   if (post) {
-    post.content = marked.parse(post.content); // first create html
+    post.content = marked.parse(post.content); // first parse md and create html
     post.content = highlightCodeInHTMLString(post.content); // than add highlight
   }
 

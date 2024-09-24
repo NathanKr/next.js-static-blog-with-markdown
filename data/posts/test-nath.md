@@ -30,8 +30,8 @@ List using ul \ li tags
 <img src='/images/posts/img1.jpg'/>
 
 <p>highlighted typescript code</p>
-<pre>
-<code class='language-typescript'>
+
+```typescript
   export function sample1() {
     const posts = [
       {
@@ -53,5 +53,4 @@ List using ul \ li tags
     console.log(Object.keys(groups));
     console.log(Object.values(groups));
   }
-</code>
-</pre>
+```
