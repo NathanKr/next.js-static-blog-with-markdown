@@ -42,12 +42,13 @@ if (post) {
 
 ```html
 <div
-        className={styles.post_body}
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      >
-</div>
+  className="{styles.post_body}"
+  dangerouslySetInnerHTML="{{"
+  __html:
+  post.content
+  }}
+></div>
 ```
-
 
 <h2>Code - highlightCodeInHTMLString</h2>
 This is a function to highlight code blocks within an HTML string
@@ -60,7 +61,15 @@ export const highlightCodeInHTMLString = (htmlString: string): string => {
   ) as NodeListOf<HTMLElement>;
 
   codeBlocks.forEach((codeBlock: HTMLElement) => {
-    const language = codeBlock.className.replace("language-", "");
+    // Extract language, if none exists, use 'plaintext' as fallback
+    const languageClass = codeBlock.className.match(/language-(\w+)/);
+    const language = languageClass ? languageClass[1] : "plaintext";
+
+    if (!languages[language]) {
+      console.warn(`Warning: The language "${language}" is not recognized.`);
+      return;
+    }
+
     const code = codeBlock.textContent!.trim();
     const highlightedCode = highlight(code, languages[language], language);
     codeBlock.innerHTML = highlightedCode;
